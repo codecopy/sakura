@@ -1,0 +1,74 @@
+tab {
+   border-width: 1px;
+   border-style: outset;
+   border-top-left-radius: 4px;
+   border-top-right-radius: 4px;
+   padding: 1px;
+   border-color: #333333;
+   background-image: -gtk-gradient (linear,
+                                       0 0,
+                                       0 1,
+                                       color-stop(0, rgb(0, 0, 0)),
+                                       color-stop(1, rgb(50, 50, 50)));
+   color: #cccccc;
+}
+
+tab GtkImage {
+   border-width: 1px;
+   border-style: outset;
+   border-radius: 4px;
+   padding: 1px;
+   border-color: #333333;
+   background-image: -gtk-gradient (linear,
+                                       0 0,
+                                       0 1,
+                                       color-stop(0, rgb(0, 0, 0)),
+                                       color-stop(1, rgb(50, 50, 50)));
+   color: #cccccc;
+}
+
+GtkWidget tab:active {
+   border-width: 1px;
+   padding: 1px;
+   border-bottom-color: #333333;
+   border-bottom-width: 1px;
+   background-image: -gtk-gradient (linear,
+                                       0 0,
+                                       0 1,
+                                       color-stop(0, rgb(30, 30, 30)),
+                                       color-stop(1, rgb(70, 70, 70)));
+}
+
+GtkDialog {
+   color: white;
+   border-width: 1px;
+   border-color: #333333;
+   background-image: -gtk-gradient (linear,
+                                       0 0,
+                                       0 1,
+                                       color-stop(0, rgb(10, 10, 10)),
+                                       color-stop(1, rgb(20, 20, 20)));
+}
+
+GtkDialog * {
+   color: white;
+   border-width: 1px;
+   border-color: #333333;
+   background-image: -gtk-gradient (linear,
+                                       0 0,
+                                       0 1,
+                                       color-stop(0, rgb(10, 10, 10)),
+                                       color-stop(1, rgb(20, 20, 20)));
+}
+
+* {
+   color: white;
+   border-width: 0px;
+   border-top-width: 1px;
+   border-color: #333333;
+   background-image: -gtk-gradient (linear,
+                                       0 0,
+                                       0 1,
+                                       color-stop(0, rgb(0, 0, 0)),
+                                       color-stop(1, rgb(0, 0, 0)));
+}
