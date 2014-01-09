@@ -2072,6 +2072,29 @@ sakura_init()
 		sakura.has_rgba = false;
 	}
 
+    /* Init css provider */
+    GtkCssProvider *provider; 
+    GdkDisplay *display;
+    GFile *file;
+
+    gchar *path;
+	configdir = g_build_filename( g_get_user_config_dir(), "sakura", NULL );
+    path = g_build_filename(configdir, DEFAULT_STYLE_FILE, NULL);
+    SAY("style path is %s", path);
+    file = g_file_new_for_path(path);
+    g_free(path);
+
+    provider = gtk_css_provider_new();
+    display = gdk_display_get_default();
+    screen = gdk_display_get_default_screen(display);
+    gtk_style_context_add_provider_for_screen(screen,
+            GTK_STYLE_PROVIDER (provider),
+            GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+    gtk_css_provider_load_from_file(provider, file, NULL);
+    g_object_unref(provider);
+
+
 	/* Command line options initialization */
 
 	/* Set argv for forked childs. Real argv vector starts at argv[1] because we're
@@ -2596,30 +2619,6 @@ sakura_add_tab()
 	int npages;
 	gchar *cwd = NULL;
 	char* configdir = NULL;
-
-    GtkCssProvider *provider; 
-    GdkDisplay *display;
-    GdkScreen *screen;
-    GFile *file;
-
-    gchar *path;
-	configdir = g_build_filename( g_get_user_config_dir(), "sakura", NULL );
-    path = g_build_filename(configdir, DEFAULT_STYLE_FILE, NULL);
-    SAY("style path is %s", path);
-    file = g_file_new_for_path(path);
-    g_free(path);
-
-    provider = gtk_css_provider_new();
-    display = gdk_display_get_default();
-    screen = gdk_display_get_default_screen(display);
-    gtk_style_context_add_provider_for_screen(screen,
-            GTK_STYLE_PROVIDER (provider),
-            GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-    gtk_css_provider_load_from_file(provider, file, NULL);
-    g_object_unref(provider);
-
-
 
 	term = g_new0( struct terminal, 1 );
 	term->hbox=gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
