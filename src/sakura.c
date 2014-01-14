@@ -39,6 +39,9 @@
 #include <pango/pango.h>
 #include <vte/vte.h>
 
+// only for debug
+// #include <signal.h>
+
 #define _(String) gettext(String)
 #define N_(String) (String)
 #define GETTEXT_PACKAGE "sakura"
@@ -2618,7 +2621,6 @@ sakura_add_tab()
 	int index;
 	int npages;
 	gchar *cwd = NULL;
-	char* configdir = NULL;
 
 	term = g_new0( struct terminal, 1 );
 	term->hbox=gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
@@ -2757,7 +2759,13 @@ sakura_add_tab()
 				/* -e option - last in the command line, takes all extra arguments */
 				if (option_xterm_args) {
 					gchar *command_joined;
+                    gchar *shell = vte_get_user_shell();
 					command_joined = g_strjoinv(" ", option_xterm_args);
+                    gchar *command_array[] = {shell, " -c \"", (char*)command_joined, "\";", shell, NULL};
+                    command_joined = g_strjoinv("", command_array);
+
+                    SAY("command_joined is %s", command_joined);
+
 					if (!g_shell_parse_argv(command_joined, &command_argc, &command_argv, &gerror)) {
 						switch (gerror->code) {
 							case G_SHELL_ERROR_EMPTY_STRING:
@@ -2773,6 +2781,7 @@ sakura_add_tab()
 						}
 					}
 					g_free(command_joined);
+					g_free(shell);
 				}
 			}
 
