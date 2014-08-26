@@ -14,16 +14,16 @@ tab {
 }
 
 tab GtkImage {
-   border-width: 1px;
-   border-style: outset;
-   border-radius: 4px;
-   padding: 1px;
+   border-width: 0px;
    border-color: #333333;
-   background-image: -gtk-gradient (linear,
-                                       0 0,
-                                       0 1,
-                                       color-stop(0, rgb(0, 0, 0)),
-                                       color-stop(1, rgb(50, 50, 50)));
+   background: transparent;
+   color: #cccccc;
+}
+
+tab *:hover {
+   border-width: 0px;
+   border-color: #333333;
+   background: transparent;
    color: #cccccc;
 }
 
