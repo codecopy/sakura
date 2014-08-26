@@ -27,6 +27,14 @@ tab GtkImage {
    color: #cccccc;
 }
 
+tab GtkLabel {
+   color: white;
+   border-width: 0px;
+   border-top-width: 1px;
+   border-color: #333333;
+   background: transparent;
+}
+
 GtkWidget tab:active {
    border-width: 1px;
    padding: 1px;
